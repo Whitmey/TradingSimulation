@@ -38,8 +38,29 @@ function drawBasic() {
       chart.draw(data, options);
     }
 
-    $.get( "https://tradingsimdb.firebaseio.com/.json", function( data ) {
-      for (var j = 0; j < data.length; j++){
-        console.log(data[j]);
-      }
+    var myVariable;
+    var one;
+    var two;
+
+    $.ajax({
+        'async': false,
+        'type': "GET",
+        'global': false,
+        'dataType': 'json',
+        'url': "https://tradingsimdb.firebaseio.com/.json",
+        'data': { 'request': "", 'target': 'arrange_url', 'method': 'method_target' },
+        'success': function (data) {
+            myVariable = data;
+            for(var i = 0; i < data.length; i++){
+              myVariable = data[i];
+              console.log(myVariable.first);
+            }
+        }
     });
+
+
+    // $.get( "https://tradingsimdb.firebaseio.com/.json", function( data ) {
+    //   for (var j = 0; j < data.length; j++){
+    //     console.log(data[j]);
+    //   }
+    // });
